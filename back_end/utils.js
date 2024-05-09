@@ -38,11 +38,11 @@ const validateRA = (RA) => {
   RA_int = parseInt(RA)
   RA_str = RA_int.toString()
 
-  return (RA_str?.length === 6 && RA_str === RA)
+  return RA_str && RA_str.length === 6 && RA_str === RA
 }
 
 const validateName = (name) => {
-  return name?.length >= 3 && !name.includes(",")
+  return name && nam.length >= 3 && !name.includes(",")
 }
 
 const getTokenMsg = (token) => {

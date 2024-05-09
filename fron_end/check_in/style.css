@@ -60,7 +60,7 @@ body {
 
 #change_section button {
   background: rgba(230,49,49);
-  font-size: max(min(36px, 1.7vw), 14px);
+  font-size: max(min(32px, 1.7vw), 14px);
 
   text-align: center;
   color: white;
@@ -87,7 +87,7 @@ body {
   background-color: rgba(50,74,151);
   border-radius: 10px 10px 0px 0px;
   border-bottom: solid 2px rgba(50,74,151);
-  padding-bottom: 9px;
+  padding-bottom: 10px;
   
   animation: select .1s linear;
 }
@@ -111,11 +111,11 @@ section {
 
 section > * {
   animation: appear .3s linear;
-  margin: 15px;
+  margin: 1.8vh;
 }
 
 h1 {
-  font-size: max(min(40px, 2vw), 16px);
+  font-size: max(min(36px, 2vw), 16px);
   color: white;
 }
 
@@ -141,7 +141,7 @@ h1 {
 
 .input div > * {
   color: white;
-  font-size: max(min(30px, 1.5vw), 12px);
+  font-size: max(min(26px, 1.5vw), 12px);
   padding: 4px;
   margin: 3px;
 }
@@ -156,7 +156,7 @@ input {
 .section button {
   border: black solid 2px;
   border-radius: 4px;
-  font-size: max(min(30px, 1.5vw), 12px);
+  font-size: max(min(26px, 1.5vw), 12px);
   margin: 5px;
 
   transition: all .1s linear;
@@ -176,7 +176,7 @@ input {
   100% {
     top: 9px;
     border-bottom: solid 2px white;
-    padding-bottom: 11px;
+    padding-bottom: 10px;
   }
 }
 

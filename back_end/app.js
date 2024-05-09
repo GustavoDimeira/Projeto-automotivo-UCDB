@@ -181,5 +181,5 @@ app.delete('/shedules/:RA', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor Express está rodando na porta ${PORT}`);
+  console.log(`Servidor Express está rodando na porta ${PORT}.`);
 });
