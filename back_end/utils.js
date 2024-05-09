@@ -42,7 +42,7 @@ const validateRA = (RA) => {
 }
 
 const validateName = (name) => {
-  return name && nam.length >= 3 && !name.includes(",")
+  return name && name.length >= 3 && !name.includes(",")
 }
 
 const getTokenMsg = (token) => {

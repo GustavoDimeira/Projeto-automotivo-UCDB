@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000"
+const URL = "https://t1lk6dks-3006.brs.devtunnels.ms"
 
 // body background-img
 const body = document.querySelector('body');
@@ -9,41 +9,41 @@ img_src = `https://accounts.ucdb.br/img/background${img_index}.JPG`;
 body.style.backgroundImage = `url("${img_src}")`;
 
 // change section buttons
-const shedule_section = document.querySelector("#addShedule")
+const schedule_section = document.querySelector("#addSchedule")
 const register_section = document.querySelector("#register")
 
-const shedule_scr_btn = document.querySelector("#shedule-btn")
+const schedule_scr_btn = document.querySelector("#schedule-btn")
 const register_scr_btn = document.querySelector("#register-btn")
 
-shedule_scr_btn.addEventListener('click', () => {
-  shedule_section.classList.remove("unselected")
+schedule_scr_btn.addEventListener('click', () => {
+  schedule_section.classList.remove("unselected")
   register_section.classList.add("unselected")
 
-  shedule_scr_btn.classList.add("pressed")
+  schedule_scr_btn.classList.add("pressed")
   register_scr_btn.classList.remove("pressed")
 })
 
 register_scr_btn.addEventListener('click', () => {
   register_section.classList.remove("unselected")
-  shedule_section.classList.add("unselected")
+  schedule_section.classList.add("unselected")
 
   register_scr_btn.classList.add("pressed")
-  shedule_scr_btn.classList.remove("pressed")
+  schedule_scr_btn.classList.remove("pressed")
 })
 
-// add shedule section
-const ra_input = document.querySelector("#addShedule input");
-const clear_addShedule = document.querySelector("#addShedule .clear-btn");
-const addShedule_btn = document.querySelector("#addShedule .submit-btn");
+// add schedule section
+const ra_input = document.querySelector("#addSchedule input");
+const clear_addSchedule = document.querySelector("#addSchedule .clear-btn");
+const addSchedule_btn = document.querySelector("#addSchedule .submit-btn");
 
-clear_addShedule.addEventListener('click', () => ra_input.value = '');
+clear_addSchedule.addEventListener('click', () => ra_input.value = '');
 
-addShedule_btn.addEventListener('click', async () => {
+addSchedule_btn.addEventListener('click', async () => {
   newData = {
     token: 1,
     RA: ra_input.value
   }
-  fetch(`${URL}/shedules`, {
+  fetch(`${URL}/schedules`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ register_btn.addEventListener('click', () => {
       if (data) {
         alert('RA registrado com sucesso, pode registrar seu horario agora')
         ra_input.value = ra_input_register.value
-        shedule_scr_btn.click();
+        schedule_scr_btn.click();
       }
     });
 });

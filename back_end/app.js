@@ -8,11 +8,11 @@ const { roles, validateToken, validateName, validateRA, errors } = require('./ut
 const { UserService } = require('./service/UserService')
 const { UserModel } = require("./model/UserModel")
 
-const { SheduleService } = require('./service/SheduleService')
-const { SheduleModel } = require("./model/SheduleModel")
+const { ScheduleService } = require('./service/ScheduleService')
+const { ScheduleModel } = require("./model/ScheduleModel")
 
-const sheduleModel = new SheduleModel()
-const sheduleService = new SheduleService(sheduleModel)
+const scheduleModel = new ScheduleModel()
+const scheduleService = new ScheduleService(scheduleModel)
 
 const userModel = new UserModel()
 const userService = new UserService(userModel)
@@ -26,6 +26,10 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
+app.get('/', (_req, res) => {
+  res.status(200).json("Hello World, it's WORKING !!!")
+})
 
 // para retornar um usuario.
 app.get('/users/:RA', async (req, res) => {
@@ -67,12 +71,12 @@ app.get('/users', async (req, res) => {
 });
 
 // para listar todos os horários.
-app.get('/shedules', async (req, res) => {
+app.get('/schedules', async (req, res) => {
   const { token } = req.body
 
   if (validateToken(token, roles.admin)) {
     try {
-      const { msg, code } = await sheduleService.getAll()
+      const { msg, code } = await scheduleService.getAll()
       res.status(code).json(msg)
     } catch(e) {
       res.status(500).json({message: errors["500"], e})
@@ -105,7 +109,7 @@ app.post('/users', async (req, res) => {
 });
 
 // para adicionar as presenças, atrelando-as ao RA, (seja entrada ou saida).
-app.post('/shedules', async (req, res) => {
+app.post('/schedules', async (req, res) => {
   const { token, RA } = req.body
 
   if (validateToken(token, roles.user)) {
@@ -114,7 +118,7 @@ app.post('/shedules', async (req, res) => {
         const user = await userModel.getByRA(RA)
 
         if (user) {
-          const { msg, code } = await sheduleService.addShedule(RA)
+          const { msg, code } = await scheduleService.addSchedule(RA)
           res.status(code).json(msg)
         } else {
           res.status(404).json(errors["404"])
@@ -132,7 +136,7 @@ app.post('/shedules', async (req, res) => {
 });
 
 // para retornar a lista de presenças por RA
-app.get('/shedules/:RA', async (req, res) => {
+app.get('/schedules/:RA', async (req, res) => {
   const RA = req.params.RA;
   const { token } = req.body
 
@@ -142,7 +146,7 @@ app.get('/shedules/:RA', async (req, res) => {
         const user = await userModel.getByRA(RA)
 
         if (user) {
-          const { msg, code } = await sheduleService.getByRA(RA)
+          const { msg, code } = await scheduleService.getByRA(RA)
           res.status(code).json(msg)
         } else {
           res.status(404).json(errors["404"])
@@ -160,13 +164,13 @@ app.get('/shedules/:RA', async (req, res) => {
 });
 
 // para o trombeta remover algum horário
-app.delete('/shedules/:RA', async (req, res) => {
+app.delete('/schedules/:RA', async (req, res) => {
   const { token, RA } = req.body
 
   if (validateToken(token, roles.admin)) {
     if (validateRA(RA)) {
       try {
-        const { msg, code } = await sheduleService.removeShedule(RA)
+        const { msg, code } = await scheduleService.removeSchedule(RA)
         res.status(code).json(msg)
       } catch(e) {
         res.status(500).json({message: errors["500"], e})

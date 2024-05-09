@@ -1,6 +1,6 @@
-class SheduleService {
-  constructor(sheduleModel) {
-    this.model = sheduleModel
+class ScheduleService {
+  constructor(scheduleModel) {
+    this.model = scheduleModel
     this.crr_response = {
       msg: {},
       code: -1
@@ -8,11 +8,11 @@ class SheduleService {
   }
 
   async getAll() {
-    const shedules = await this.model.getAll()
+    const schedules = await this.model.getAll()
 
     this.crr_response.msg = {
-      Itens: shedules.length,
-      shedules
+      Itens: schedules.length,
+      schedules
     }
     this.crr_response.code = 200
 
@@ -20,39 +20,39 @@ class SheduleService {
   }
 
   async getByRA(RA) {
-    const shedules = await this.model.getByRA(RA)
+    const schedules = await this.model.getByRA(RA)
 
     this.crr_response.msg = {
-      Itens: shedules.length,
-      shedules
+      Itens: schedules.length,
+      schedules
     }
     this.crr_response.code = 200
 
     return this.crr_response
   }
 
-  async addShedule(RA) {
-    let shedule = await this.model.getFromTodayByRA(RA) // ve se ja existe um horario nesse dia
+  async addSchedule(RA) {
+    let schedule = await this.model.getFromTodayByRA(RA) // ve se ja existe um horario nesse dia
 
-    if (shedule) { // se sim, adiciona o horario de saida
-      if (shedule.out !== 'null') { // caso ja tenha horario de entrada e saida adicionados para hoje
+    if (schedule) { // se sim, adiciona o horario de saida
+      if (schedule.out !== 'null') { // caso ja tenha horario de entrada e saida adicionados para hoje
         this.crr_response.msg = {
           message: "horario de hj ja contabilizado"
         }
         this.crr_response.code = 400
       } else {
-        shedule = await this.model.addExit(shedule.id)
+        schedule = await this.model.addExit(schedule.id)
         this.crr_response.msg = {
           message: "Horario de saida adicionado",
-          shedule
+          schedule
         }
         this.crr_response.code = 202
       }
     } else {
-      shedule = await this.model.addShedule(RA) // se não, cria um novo
+      schedule = await this.model.addSchedule(RA) // se não, cria um novo
       this.crr_response.msg = {
         message: "Horario de etrada adicionado",
-        shedule
+        schedule
       }
       this.crr_response.code = 201
     }
@@ -61,4 +61,4 @@ class SheduleService {
   }
 }
 
-module.exports = { SheduleService }
+module.exports = { ScheduleService }

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-class SheduleModel {
+class ScheduleModel {
   constructor() {
     this.csv_path = "back_end/data_base/schedules.csv"
   }
@@ -76,21 +76,21 @@ class SheduleModel {
     return {id, in: checkIn, out, RA};
   }
 
-  async addShedule(RA) {
+  async addSchedule(RA) {
     const content_buffer = fs.readFileSync(this.csv_path);
 
     const id = content_buffer.toString().split("\n").length
-    const new_shedule = { id, in: new Date().toISOString(), out: null, RA }
+    const new_schedule = { id, in: new Date().toISOString(), out: null, RA }
 
-    const new_shedule_data = `\n${new_shedule.id},${new_shedule.in},${new_shedule.out},${new_shedule.RA}`;
-    const new_shedule_buffer = Buffer.from(new_shedule_data);
+    const new_schedule_data = `\n${new_schedule.id},${new_schedule.in},${new_schedule.out},${new_schedule.RA}`;
+    const new_schedule_buffer = Buffer.from(new_schedule_data);
 
-    const new_content = Buffer.concat([content_buffer, new_shedule_buffer]);
+    const new_content = Buffer.concat([content_buffer, new_schedule_buffer]);
 
     fs.writeFileSync(this.csv_path, new_content);
 
-    return new_shedule
+    return new_schedule
   }
 }
 
-module.exports = { SheduleModel }
+module.exports = { ScheduleModel }
