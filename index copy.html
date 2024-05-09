@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" media="screen" />
+  <title>Registro de presença</title>
+</head>
+
+<body>
+  <img src="https://accounts.ucdb.br/img/logo-ucdb.png" alt="logo" id="logo">
+  <div id="wrapper">
+    <ul id="change_section">
+      <button id="shedule-btn" class="pressed">
+        🕓</br><a>Presença</a>
+      </button>
+      <button id="register-btn">
+        🔓</br><a>RA</a>
+      </button>
+    </ul>
+    <section id="addShedule" class="section selected">
+      <h1>Registro de presença</h1>
+      <div class="input">
+        <div class="RA">
+          <label for="RA">RA:</label>
+          <input type="text" id="RA" placeholder="Insira seu RA">
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="submit-btn" type="button">Registrar</button>
+        <button class="clear-btn" type="button">Limpar</button>
+      </div>
+    </section>
+    <section id="register" class="section unselected">
+      <h1>Registro de RA</h1>
+      <div class="input">
+        <div class="RA_register">
+          <label for="RA_register">RA:</label>
+          <input type="text" id="RA_register" placeholder="Insira seu RA">
+        </div>
+        <div class="name">
+          <label for="Nome">Nome:</label>
+          <input type="text" id="Nome" placeholder="Insira seu nome">
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="submit-btn" type="button">Registrar</button>
+        <button class="clear-btn" type="button">Limpar</button>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="main.js"></script>
+
+</html>

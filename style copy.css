@@ -1,0 +1,217 @@
+body {
+  display: flex;
+  flex-direction: column;
+
+  /*justify-content: center;*/
+  align-items: center;
+
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;  
+}
+
+.unselected {
+  display: none;
+}
+
+#logo {
+  height: auto;
+  width: 12vw;
+
+  min-width: 100px;
+  padding-top: 20vh;
+
+  /*border: white solid 2px;*/
+  /*box-shadow: 3px 5px 3px black;*/
+  /*border-radius: 5px;*/
+
+  margin-bottom: 3vmin;
+}
+
+#wrapper {
+  min-width: max(45vw, 200px);
+
+  opacity: .9;
+}
+
+#change_section {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 0px;
+  margin: 5px;
+
+  min-width: 40vw;
+}
+
+#change_section button {
+  background: rgba(230,49,49);
+  font-size: max(min(32px, 1.7vw), 14px);
+
+  text-align: center;
+  color: white;
+
+  border: solid 2px white;
+  border-radius: 5px;
+
+  margin: 0px;
+  padding: 10px 10px;
+
+  min-width: 18vw;
+  transition: all .15s linear;
+}
+
+#change_section button:hover a {
+  text-decoration: underline;
+}
+
+#change_section .pressed {
+  position: relative;
+  top: 7px;
+  z-index: 2;
+
+  background-color: rgba(50,74,151);
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: solid 2px rgba(50,74,151);
+  padding-bottom: 10px;
+  
+  animation: select .1s linear;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  border: white solid 2px;
+  background-color: rgba(50,74,151);
+  border-radius: 10px;
+
+  box-shadow: 12px 12px 15px black;
+
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+section > * {
+  animation: appear .3s linear;
+  margin: 1.8vh;
+}
+
+h1 {
+  font-size: max(min(36px, 2vw), 16px);
+  color: white;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-evenly;
+
+  width: 80%;
+}
+
+.input div {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  min-width: 80%;
+
+  padding: 3px;
+}
+
+.input div > * {
+  color: white;
+  font-size: max(min(26px, 1.5vw), 12px);
+  padding: 4px;
+  margin: 3px;
+}
+
+input {
+  width: 75%;
+  border: black solid 1px;
+  border-radius: 3px;
+  color: black !important;
+}
+
+.section button {
+  border: black solid 2px;
+  border-radius: 4px;
+  font-size: max(min(26px, 1.5vw), 12px);
+  margin: 5px;
+
+  transition: all .1s linear;
+}
+
+.section button:hover {
+  scale: 1.1;
+  box-shadow: 4px 4px 5px black;
+}
+
+@keyframes select {
+  0% {
+    top: 0px;
+    border-bottom: solid 2px white;
+    padding-bottom: 0px;
+  }
+  100% {
+    top: 9px;
+    border-bottom: solid 2px white;
+    padding-bottom: 10px;
+  }
+}
+
+@keyframes appear {
+  0% { opacity: 0 }
+  33% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+@media screen and (orientation: landscape) {
+  #logo {
+    padding-top: 10vh;
+  }
+}
+
+@media screen and (max-height: 500px) {  
+  #logo {
+    padding-top: 5vh;
+  }
+
+  section > * {
+    margin: 10px;
+  }
+
+  .input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 320px) {  
+  #logo {
+    padding-top: 2vh;
+  }
+
+  section > * {
+    margin: 5px;
+  }
+}
