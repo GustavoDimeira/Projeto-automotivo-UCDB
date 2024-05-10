@@ -1,4 +1,8 @@
-const URL = "https://t1lk6dks-3006.brs.devtunnels.ms"
+const urlParams = new URLSearchParams(window.location.search);
+
+const url_id = urlParams.get("url_id")
+
+const URL = `https://${url_id}-3006.brs.devtunnels.ms`
 
 // body background-img
 const body = document.querySelector('body');

@@ -41,8 +41,8 @@ app.get('/users/:RA', async (req, res) => {
       try {
         const { msg, code } = await userService.getByRA(RA)
         res.status(code).json(msg)
-      } catch(e) {
-        res.status(500).json({message: errors["500"], e})
+      } catch(error) {
+        res.status(500).json({message: errors["500"], error})
       }
 
     } else {
@@ -61,8 +61,8 @@ app.get('/users', async (req, res) => {
     try {
       const { msg, code } = await userService.getAll()
       res.status(code).json(msg)
-    } catch(e) {
-      res.status(500).json({message: errors["500"], e})
+    } catch(error) {
+      res.status(500).json({message: errors["500"], error})
     }
 
   } else {
@@ -78,8 +78,8 @@ app.get('/schedules', async (req, res) => {
     try {
       const { msg, code } = await scheduleService.getAll()
       res.status(code).json(msg)
-    } catch(e) {
-      res.status(500).json({message: errors["500"], e})
+    } catch(error) {
+      res.status(500).json({message: errors["500"], error})
     }
 
   } else {
@@ -96,8 +96,8 @@ app.post('/users', async (req, res) => {
       try {
         const { msg, code } = await userService.addUser(RA, name)
         res.status(code).json(msg)
-      } catch(e) {
-        res.status(500).json({message: errors["500"], e})
+      } catch(error) {
+        res.status(500).json({message: errors["500"], error})
       }
 
     } else {
@@ -123,8 +123,8 @@ app.post('/schedules', async (req, res) => {
         } else {
           res.status(404).json(errors["404"])
         }
-      } catch(e) {
-        res.status(500).json({...errors["500"], e})
+      } catch(error) {
+        res.status(500).json({...errors["500"], error})
       }
 
     } else {
@@ -151,8 +151,8 @@ app.get('/schedules/:RA', async (req, res) => {
         } else {
           res.status(404).json(errors["404"])
         }
-      } catch(e) {
-        res.status(500).json({...errors["500"], e})
+      } catch(error) {
+        res.status(500).json({...errors["500"], error})
       }
 
     } else {
@@ -172,8 +172,8 @@ app.delete('/schedules/:RA', async (req, res) => {
       try {
         const { msg, code } = await scheduleService.removeSchedule(RA)
         res.status(code).json(msg)
-      } catch(e) {
-        res.status(500).json({message: errors["500"], e})
+      } catch(error) {
+        res.status(500).json({message: errors["500"], error})
       }
 
     } else {

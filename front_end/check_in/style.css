@@ -2,7 +2,6 @@ body {
   display: flex;
   flex-direction: column;
 
-  /*justify-content: center;*/
   align-items: center;
 
   height: 100vh;
@@ -31,10 +30,6 @@ body {
 
   min-width: 100px;
   padding-top: 20vh;
-
-  /*border: white solid 2px;*/
-  /*box-shadow: 3px 5px 3px black;*/
-  /*border-radius: 5px;*/
 
   margin-bottom: 3vmin;
 }
@@ -189,6 +184,10 @@ input {
 @media screen and (orientation: landscape) {
   #logo {
     padding-top: 10vh;
+  }
+
+  #wrapper {
+    min-width: max(min(65vw, 400px), 200px);
   }
 }
 
