@@ -1,12 +1,8 @@
 import qrcode
 
-url_id = 1
-url = f'https://gustavodimeira.github.io/web-page/fron_end/check_in?url_id={url_id}'
+url = f'https://gustavodimeira.github.io/web-page/front_end/check_in'
 
-# Gerar a imagem do QR code
 img = qrcode.make(url)
-
-# Salvar a imagem do QR code
-img.save(f"url_{url_id}.jpg")
+img.save(f"url.jpg")
 
 print("QR code gerado com sucesso!")

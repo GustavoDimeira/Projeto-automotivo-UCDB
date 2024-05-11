@@ -1,8 +1,4 @@
-const urlParams = new URLSearchParams(window.location.search);
-
-const url_id = urlParams.get("url_id")
-
-const URL = `https://${url_id}-3006.brs.devtunnels.ms`
+const URL = `https://super-barnacle-xgp4g5r6wg6h9x5w-5000.app.github.dev/`
 
 // body background-img
 const body = document.querySelector('body');
