@@ -184,6 +184,4 @@ app.delete('/schedules/:RA', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor Express está rodando na porta ${PORT}.`);
-});
+module.exports = { app }
