@@ -34,16 +34,16 @@ class ScheduleService {
   async addSchedule(RA) {
     let schedule = await this.model.getFromTodayByRA(RA) // ve se ja existe um horario nesse dia
 
-    if (schedule) { // se sim, adiciona o horario de saida
-      if (schedule.out !== 'null') { // caso ja tenha horario de entrada e saida adicionados para hoje
+    if (schedule) { // se sim, ve se le ja possui horario de entrada
+      if (schedule.out !== 'null') { // se sim, não adiciona nada
         this.crr_response.msg = {
-          message: "horario de hoje ja contabilizado"
+          message: "horario de hoje já contabilizado"
         }
         this.crr_response.code = 400
-      } else {
+      } else { // se não, adiciona horario de saida
         schedule = await this.model.addExit(schedule.id)
         this.crr_response.msg = {
-          message: "Horario de saida adicionado",
+          message: `Horario de saída adicionado: ${schedule.out}`,
           schedule
         }
         this.crr_response.code = 202
@@ -51,7 +51,7 @@ class ScheduleService {
     } else {
       schedule = await this.model.addSchedule(RA) // se não, cria um novo
       this.crr_response.msg = {
-        message: "Horario de etrada adicionado",
+        message: `Horario de entrada adicionado: ${schedule.in}`,
         schedule
       }
       this.crr_response.code = 201

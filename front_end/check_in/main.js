@@ -1,5 +1,8 @@
 const URL = `https://opulent-space-chainsaw-vxgq9w9pr92x4pp-5000.app.github.dev`
 
+// misselanium
+const loading_popUp = document.querySelector("#loading-popUp");
+
 // body background-img
 const body = document.querySelector('body');
 
@@ -39,6 +42,8 @@ const addSchedule_btn = document.querySelector("#addSchedule .submit-btn");
 clear_addSchedule.addEventListener('click', () => ra_input.value = '');
 
 addSchedule_btn.addEventListener('click', async () => {
+  loading_popUp.classList.add("visiable")
+
   newData = {
     token: 1,
     RA: ra_input.value
@@ -46,12 +51,14 @@ addSchedule_btn.addEventListener('click', async () => {
   fetch(`${URL}/schedules`, {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(newData)
   })
     .then(async (response) => {
       if (response.status === 404) {
+        loading_popUp.classList.remove("visiable")
+        await new Promise(resolve => setTimeout(resolve, 200));
         alert('RA não registrado no sistema, voce pode adicionalo na tela: "Registro de RA"')
         ra_input_register.value = ra_input.value
         register_scr_btn.click();
@@ -62,15 +69,24 @@ addSchedule_btn.addEventListener('click', async () => {
         const message_stringify = await response.text()
         const msg = JSON.parse(message_stringify).message
 
+        loading_popUp.classList.remove("visiable")
+        await new Promise(resolve => setTimeout(resolve, 200));
         alert(msg)
-        
+
         return false
       }
 
       return response.json()
     })
-    .then((json) => {
+    .then(async (json) => {
+      loading_popUp.classList.remove("visiable")
+      await new Promise(resolve => setTimeout(resolve, 200));
       if (json) alert(json.message)
+    }).
+    catch(async (e) => {
+      loading_popUp.classList.remove("visiable")
+      await new Promise(resolve => setTimeout(resolve, 200));
+      alert(e)
     });
 });
 
@@ -86,15 +102,17 @@ clear_register.addEventListener('click', () => {
 });
 
 register_btn.addEventListener('click', () => {
+  loading_popUp.classList.add("visiable")
+
   const newData = {
     token: 1,
     RA: ra_input_register.value,
     name: name_input_register.value,
   }
-  fetch(`${URL}/users`,{
+  fetch(`${URL}/users`, {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(newData)
   })
@@ -103,17 +121,26 @@ register_btn.addEventListener('click', () => {
         const message_stringify = await response.text();
         const msg = JSON.parse(message_stringify).message;
 
+        loading_popUp.classList.remove("visiable")
+        await new Promise(resolve => setTimeout(resolve, 200));
         alert(msg);
         return false;
       }
 
       return response.json();
     })
-    .then((data) => {
+    .then(async (data) => {
       if (data) {
+        loading_popUp.classList.remove("visiable")
+        await new Promise(resolve => setTimeout(resolve, 200));
         alert('RA registrado com sucesso, pode registrar seu horario agora')
         ra_input.value = ra_input_register.value
         schedule_scr_btn.click();
       }
+    }).
+    catch(async (e) => {
+      loading_popUp.classList.remove("visiable")
+      await new Promise(resolve => setTimeout(resolve, 200));
+      alert(e)
     });
 });

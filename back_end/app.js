@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-  res.status(200).json("Hello World, it's WORKING !!!")
+  res.status(200).json("Hello World, it's WORKING!!!")
 })
 
 // para retornar um usuario.
@@ -40,7 +40,7 @@ app.get('/users/:RA', async (req, res) => {
         const { msg, code } = await userService.getByRA(RA)
         res.status(code).json(msg)
       } catch(error) {
-        res.status(500).json({message: errors["500"], error})
+        res.status(500).json({...errors["500"], error})
       }
 
     } else {
@@ -60,7 +60,7 @@ app.get('/users', async (req, res) => {
       const { msg, code } = await userService.getAll()
       res.status(code).json(msg)
     } catch(error) {
-      res.status(500).json({message: errors["500"], error})
+      res.status(500).json({...errors["500"], error})
     }
 
   } else {
@@ -77,7 +77,7 @@ app.get('/schedules', async (req, res) => {
       const { msg, code } = await scheduleService.getAll()
       res.status(code).json(msg)
     } catch(error) {
-      res.status(500).json({message: errors["500"], error})
+      res.status(500).json({...errors["500"], error})
     }
 
   } else {
@@ -85,7 +85,7 @@ app.get('/schedules', async (req, res) => {
   }
 });
 
-// para adicionar um novo "usuário" ao sistema.
+// para adicionar um novo usuário ao sistema.
 app.post('/users', async (req, res) => {
   const { token, RA, name } = req.body
 
@@ -95,7 +95,7 @@ app.post('/users', async (req, res) => {
         const { msg, code } = await userService.addUser(RA, name)
         res.status(code).json(msg)
       } catch(error) {
-        res.status(500).json({message: errors["500"], error})
+        res.status(500).json({...errors["500"], error})
       }
 
     } else {
@@ -171,7 +171,7 @@ app.delete('/schedules/:RA', async (req, res) => {
         const { msg, code } = await scheduleService.removeSchedule(RA)
         res.status(code).json(msg)
       } catch(error) {
-        res.status(500).json({message: errors["500"], error})
+        res.status(500).json({...errors["500"], error})
       }
 
     } else {
