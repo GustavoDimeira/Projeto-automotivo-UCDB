@@ -37,7 +37,7 @@ class ScheduleService {
     if (schedule) { // se sim, adiciona o horario de saida
       if (schedule.out !== 'null') { // caso ja tenha horario de entrada e saida adicionados para hoje
         this.crr_response.msg = {
-          message: "horario de hj ja contabilizado"
+          message: "horario de hoje ja contabilizado"
         }
         this.crr_response.code = 400
       } else {

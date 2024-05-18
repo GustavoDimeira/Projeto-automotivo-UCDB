@@ -16,7 +16,7 @@ const errors = {
   },
   "400": {
     code: 400,
-    message: 'informações passadas estão incorretas'
+    message: 'Informações passadas estão incorretas'
   },
   "404": {
     code: 404,
@@ -24,7 +24,7 @@ const errors = {
   },
   "403": {
     code: 403,
-    message: 'acesso negado, permição insuficiente ou token invalido'
+    message: 'Acesso negado, permição insuficiente ou token invalido'
   },
 }
 
@@ -42,7 +42,7 @@ const validateRA = (RA) => {
 }
 
 const validateName = (name) => {
-  return name && name.length >= 3 && !name.includes(",")
+  return name && name.length >= 3 && !name.includes(",") && !name.includes('\n')
 }
 
 const getTokenMsg = (token) => {

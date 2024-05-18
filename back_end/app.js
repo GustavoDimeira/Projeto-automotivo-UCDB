@@ -1,8 +1,6 @@
 require("dotenv").config()
 const express = require('express');
 
-const PORT = process.env.port
-
 const { roles, validateToken, validateName, validateRA, errors } = require('./utils');
 
 const { UserService } = require('./service/UserService')
